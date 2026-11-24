@@ -1,0 +1,123 @@
+/* Hustle v4 — styles. The game is drawn on a fixed 960x600 stage that is scaled to fit any screen. */
+:root{--bg:#0B0B1F;--fg:#F2F4FF;--mut:#9AA0C7;--ind:#2D2680;--acc:#4D8DFF;--cold:#7C6CFF;--soft:#6B6FA3}
+
+*{box-sizing:border-box}
+
+html,body{margin:0;height:100%;background:#E9EBF5;overflow:hidden;font-family:'Space Grotesk',system-ui,sans-serif;-webkit-text-size-adjust:100%}
+
+#stage{position:absolute;left:0;top:0;width:960px;height:600px;background:var(--bg);color:var(--fg);border-radius:20px;overflow:hidden;box-shadow:0 10px 40px #1a1a2e55;user-select:none;-webkit-user-select:none;transform-origin:0 0}
+
+#bg,#ui,#vig{position:absolute;inset:0;width:100%;height:100%}
+
+#ui>*{position:absolute}
+
+#vig{pointer-events:none;background:radial-gradient(circle at 50% 72%,transparent var(--r,70%),var(--bg) 100%)}
+
+.cld{animation:drift 40s linear infinite;fill:var(--ind)}
+
+@keyframes drift{from{transform:translateX(-200px)}
+to{transform:translateX(1160px)}
+}
+
+.pap{position:absolute;top:-30px;width:26px;height:32px;background:#2D268066;border:1px solid var(--soft);animation:fall linear infinite}
+
+@keyframes fall{to{transform:translateY(660px) rotate(240deg)}
+}
+
+.lab{font:600 11px 'JetBrains Mono',ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--mut)}
+
+.mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace}
+
+.tl{left:36px;top:28px}
+.tr{right:36px;top:28px;width:230px;text-align:right}
+
+.pts{font:700 64px/1 'JetBrains Mono',ui-monospace,Menlo,monospace;color:var(--fg);display:flex;align-items:center;gap:10px}
+
+#arrow{color:var(--acc);font-size:40px;filter:drop-shadow(0 0 8px var(--acc));animation:bob .6s ease-in-out infinite alternate}
+
+@keyframes bob{to{transform:translateY(-6px)}
+}
+
+.sub{margin-top:6px;color:var(--mut);font:400 15px 'JetBrains Mono',ui-monospace,Menlo,monospace}
+.sub b{color:var(--acc);text-shadow:0 0 8px var(--acc)}
+
+#age{font:700 34px 'JetBrains Mono',ui-monospace,Menlo,monospace}
+
+.bar,.gauge{height:10px;border-radius:6px;background:var(--ind);margin:8px 0 6px;overflow:hidden}
+
+.bar i,.gauge i{display:block;height:100%;background:var(--acc);box-shadow:0 0 10px var(--acc);width:0}
+
+.l{left:44px;top:170px;width:90px;text-align:center}
+
+#pips{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:10px}
+
+#pips i{height:8px;border-radius:2px;background:var(--cold);transition:opacity .3s}
+#pips i.off{opacity:.12}
+
+.face{left:380px;top:150px;width:200px;text-align:center}
+
+#mood{margin-top:8px;font:600 20px 'Space Grotesk',system-ui,sans-serif;color:var(--fg)}
+
+.r{right:44px;top:200px;width:170px}
+
+.worth{font:400 13px 'JetBrains Mono',ui-monospace,Menlo,monospace;color:var(--soft)}
+
+#keys{left:0;right:0;bottom:70px;height:76px;pointer-events:none}
+
+.k{position:absolute;top:6px;width:64px;height:64px;border-radius:50%;border:3px solid var(--fg);background:#15153A;color:var(--fg);display:grid;place-items:center;font:700 26px 'JetBrains Mono',ui-monospace,Menlo,monospace;transition:transform .15s,opacity .35s,background .15s}
+
+.k.cur{background:#BFD6FF;border-color:var(--bg);color:var(--bg);transform:scale(1.18);box-shadow:0 0 0 3px var(--acc),0 0 26px var(--acc)}
+
+.k.done{opacity:.14;transform:scale(.82)}
+
+#combo{left:0;right:0;bottom:30px;text-align:center;font:700 22px 'JetBrains Mono',ui-monospace,Menlo,monospace;color:var(--acc);text-shadow:0 0 10px var(--acc)}
+
+#fx{left:0;top:0;width:100%;height:100%;pointer-events:none}
+
+.fx{position:absolute;font:700 22px 'JetBrains Mono',ui-monospace,Menlo,monospace;color:var(--acc);text-shadow:0 0 8px var(--acc);animation:up .8s ease-out forwards}
+
+@keyframes up{to{transform:translateY(-70px);opacity:0}
+}
+
+.pill{background:var(--cold);color:var(--fg);border:0;border-radius:40px;padding:16px 36px;font:700 22px 'Space Grotesk',system-ui,sans-serif;cursor:pointer;box-shadow:0 0 22px #4D8DFF66}
+
+.pill:hover{outline:2px solid var(--acc);outline-offset:3px}
+
+.ctr{left:0;right:0;text-align:center}
+
+.brk{inset:0;background:var(--ind);display:grid;place-items:center;align-content:center;gap:14px;text-align:center}
+
+.big{font:700 96px 'JetBrains Mono',ui-monospace,Menlo,monospace}
+
+.endrow{opacity:0;animation:show .6s forwards;font:400 22px 'JetBrains Mono',ui-monospace,Menlo,monospace;margin:8px 0}
+
+@keyframes show{to{opacity:1}
+}
+
+
+/* ---------- responsive page layout ---------- */
+body{height:100vh;height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+:root{--kp:0px}
+/* the frame keeps 16:10 and never overflows the screen; the stage inside is scaled to its width by main.js */
+#frame{position:relative;width:min(100%,calc((100dvh - var(--kp) - 40px) * 1.6),1344px);aspect-ratio:960/600;flex:0 0 auto}
+#stage{touch-action:manipulation}
+
+/* touch keypad: four big keys on phones/tablets, hidden with a mouse and keyboard */
+#pad{display:none;width:min(100%,640px);gap:10px;grid-template-columns:repeat(4,1fr)}
+#pad button{min-height:64px;border:3px solid var(--fg);border-radius:18px;background:#15153A;color:var(--fg);
+  font:700 26px 'JetBrains Mono',ui-monospace,monospace;touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer}
+#pad button.cur{background:#BFD6FF;border-color:var(--bg);color:var(--bg);box-shadow:0 0 0 3px var(--acc),0 0 20px var(--acc)}
+#pad button.wide{grid-column:1 / -1;background:var(--cold);border-color:var(--acc);font-family:'Space Grotesk',system-ui,sans-serif;font-size:22px}
+#pad button:active{transform:scale(.96)}
+#pad button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+@media (pointer:coarse),(max-width:700px){:root{--kp:88px}#pad{display:grid}}
+
+/* small screens: enlarge the tiniest HUD text so it survives the scale-down */
+#stage.sm .lab{font-size:19px}
+#stage.sm .sub,#stage.sm .worth{font-size:22px}
+#stage.sm #mood{font-size:28px}
+#stage.sm #combo{font-size:30px}
+
+/* respect reduced-motion settings */
+@media (prefers-reduced-motion:reduce){.cld,#arrow,.fx{animation:none!important}#arrow{transform:none}}
